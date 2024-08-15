@@ -22,6 +22,14 @@ export function add(numbers: string): number {
   //to split input based on delimiter variable and convert numeric strings to numbers
   const numArray = numbers.split(delimiter).map((num) => parseInt(num, 10));
 
+  // Check for negative numbers
+  const negativeNumbers = numArray.filter((num) => num < 0);
+  if (negativeNumbers.length > 0) {
+    throw new Error(
+      `negative numbers not allowed: ${negativeNumbers.join(",")}`
+    );
+  }
+
   // to add all numbers in the array & return
   return numArray.reduce((sum, num) => sum + num, 0);
 }
