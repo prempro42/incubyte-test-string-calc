@@ -4,8 +4,23 @@ export function add(numbers: string) {
     return 0;
   }
 
-  //to split input based on ',' or '\n' separator and convert to numeric strings to numbers
-  const numArray = numbers.split(/,|\n/).map((num) => parseInt(num, 10));
+  let delimiter = /,|\n/; // default delimiters: comma or newline
+
+  // Check for custom delimiter
+  if (numbers.startsWith("//")) {
+    const parts = numbers.split("\n");
+    const customDelimiter = parts[0].slice(2); // Extract the custom delimiter
+
+    // Escape special characters in the delimiter for regex
+    delimiter = new RegExp(
+      customDelimiter.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&")
+    );
+
+    numbers = parts[1]; // The remaining string after the delimiter definition
+  }
+
+  //to split input based on delimiter variable and convert numeric strings to numbers
+  const numArray = numbers.split(delimiter).map((num) => parseInt(num, 10));
 
   // to add all numbers in the array & return
   return numArray.reduce((sum, num) => sum + num, 0);
