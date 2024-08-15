@@ -29,4 +29,10 @@ describe("add function", () => {
     expect(add("1\n2,3")).toBe(6);
     expect(add("4\n5\n6")).toBe(15);
   });
+
+  test("should handle a custom delimiter", () => {
+    expect(add("//;\n1;2")).toBe(3);
+    expect(add("//-\n2-3-4")).toBe(9);
+    expect(add("//^\n1^3^4^6")).toBe(14);
+  });
 });
