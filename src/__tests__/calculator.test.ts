@@ -35,4 +35,13 @@ describe("add function", () => {
     expect(add("//-\n2-3-4")).toBe(9);
     expect(add("//^\n1^3^4^6")).toBe(14);
   });
+
+  test("should throw an exception for negative numbers", () => {
+    expect(() => add("21,0,-3")).toThrow("negative numbers not allowed: -3");
+    expect(() => add("1,-2,3")).toThrow("negative numbers not allowed: -2");
+    expect(() => add("1,-2,-3")).toThrow("negative numbers not allowed: -2,-3");
+    expect(() => add("-1,-2,-3,-4,-5,-6,-7,-8,-9")).toThrow(
+      "negative numbers not allowed: -1,-2,-3,-4,-5,-6,-7,-8,-9"
+    );
+  });
 });
