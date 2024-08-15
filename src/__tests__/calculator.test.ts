@@ -17,4 +17,11 @@ describe("add function", () => {
     expect(add("4,3")).toBe(7);
     expect(add("7,2")).toBe(9);
   });
+
+  test("should return the sum of n numbers", () => {
+    expect(add("1,5,4")).toBe(10);
+    expect(add("5,5,7,8")).toBe(25);
+    expect(add("4,3,99,100")).toBe(206);
+    expect(add("7,2,1000,150000,21")).toBe(151030);
+  });
 });
