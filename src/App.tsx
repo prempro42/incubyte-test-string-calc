@@ -1,12 +1,8 @@
 import "./App.css";
-import Users from "./components/Users";
+import StringCalculator from "./components/StringCalculator";
 
 function App() {
-  return (
-    <>
-      <Users />
-    </>
-  );
+  return <StringCalculator />;
 }
 
 export default App;
