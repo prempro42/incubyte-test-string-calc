@@ -24,4 +24,9 @@ describe("add function", () => {
     expect(add("4,3,99,100")).toBe(206);
     expect(add("7,2,1000,150000,21")).toBe(151030);
   });
+
+  test("should handle new lines between numbers", () => {
+    expect(add("1\n2,3")).toBe(6);
+    expect(add("4\n5\n6")).toBe(15);
+  });
 });
