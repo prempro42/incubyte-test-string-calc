@@ -11,10 +11,13 @@ export function add(numbers: string): number {
     const parts = numbers.split("\n");
     const customDelimiter = parts[0].slice(2); // Extract the custom delimiter
 
-    // Escape special characters in the delimiter for regex
-    delimiter = new RegExp(
-      customDelimiter.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&")
+    const escapedRegex = customDelimiter.replace(
+      /[-/\\^$*+?.()|[\]{}]/g,
+      "\\$&"
     );
+
+    // Escape special characters in the delimiter for regex
+    delimiter = new RegExp(escapedRegex);
 
     numbers = parts[1]; // The remaining string after the delimiter definition
   }
@@ -30,6 +33,7 @@ export function add(numbers: string): number {
     );
   }
 
-  // to add all numbers in the array & return
-  return numArray.reduce((sum, num) => sum + num, 0);
+  return delimiter.test("*")
+    ? numArray.reduce((product, num) => product * num)
+    : numArray.reduce((sum, num) => sum + num, 0);
 }
