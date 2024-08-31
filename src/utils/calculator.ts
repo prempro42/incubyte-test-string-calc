@@ -33,7 +33,33 @@ export function add(numbers: string): number {
     );
   }
 
+  const resNumArr = handleCubing(numArray);
+
   return delimiter.test("*")
-    ? numArray.reduce((product, num) => product * num)
-    : numArray.reduce((sum, num) => sum + num, 0);
+    ? resNumArr.reduce((product, num) => product * num)
+    : resNumArr.reduce((sum, num) => sum + num, 0);
+}
+
+function handleCubing(numArray: number[]) {
+  const resArr: number[] = [];
+  const countObj: any = {};
+  for (const num of numArray) {
+    if (countObj[num] == null) {
+      countObj[num] = 1;
+    } else {
+      countObj[num] += 1;
+    }
+  }
+
+  for (const num in countObj) {
+    const numCount = countObj[num];
+    if (numCount >= 3) {
+      const cubedNum = Math.pow(Number(num), 3);
+      resArr.push(cubedNum);
+    } else {
+      resArr.push(Number(num) * numCount);
+    }
+  }
+
+  return resArr;
 }

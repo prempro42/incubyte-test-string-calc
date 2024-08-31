@@ -50,4 +50,17 @@ describe("add function", () => {
     expect(add("//*\n2*3*4")).toBe(24);
     expect(add("//*\n1*3*4*6")).toBe(72);
   });
+
+  test("should handle a custom delimiter", () => {
+    expect(add("//;*\n1;*2")).toBe(3);
+    expect(add("//--\n2--3--4")).toBe(9);
+    expect(add("//^$^\n1^$^3^$^4^$^6")).toBe(14);
+    expect(add("//^xy\n1^xy3^xy4^xy6")).toBe(14);
+  });
+
+  test("if number appears more than 3 times, add cube of that number", () => {
+    expect(add("//;\n1;2;2;2")).toBe(9);
+    expect(add("//+\n3+2+3+1+3+3+3+3")).toBe(30);
+    expect(add("//+\n3+2+3+1+3+3+3+3+4+6+1+4+3+4")).toBe(101);
+  });
 });
