@@ -42,7 +42,7 @@ export function add(numbers: string): number {
 
 function handleCubing(numArray: number[]) {
   const resArr: number[] = [];
-  const countObj: any = {};
+  const countObj: Record<string, number> = {};
   for (const num of numArray) {
     if (countObj[num] == null) {
       countObj[num] = 1;
